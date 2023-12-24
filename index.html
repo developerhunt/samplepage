@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Animated Login Form</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="box">
+		<form id="login-form"autocomplete="off">
+			<h2>Sign in</h2>
+			<div class="inputBox">
+				<input type="text" required>
+				<span>Userame</span>
+				<i></i>
+			</div>
+			<div class="inputBox">
+				<input type="password" required>
+				<span>Password</span>
+				<i></i>
+			</div>
+			<div class="links">
+				<a href="#">Forgot Password ?</a>
+				<a href="#">Signup</a>
+			</div>
+			<input type="submit" value="Login">
+		</form>
+	</div>
+	<script>
+		const form = document.querySelector("#login-form");
+		const errorMessage = document.querySelector("#error-message");
+
+		form.addEventListener("submit", function(event) {
+			event.preventDefault();
+
+			const username = form.elements["username"].value;
+			const password = form.elements["password"].value;
+
+			if (username === "admin" && password === "password") {
+				window.location.href = "next-page.html";
+			} else {
+				errorMessage.textContent = "Invalid username or password";
+			}
+		});
+	</script>
+</body>
+</html>
