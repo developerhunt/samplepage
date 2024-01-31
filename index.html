@@ -1,47 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Animated Login Form</title>
-	<link rel="stylesheet" href="style.css">
-</head>
-<body>
-	<div class="box">
-		<form id="login-form"autocomplete="off">
-			<h2>Sign in</h2>
-			<div class="inputBox">
-				<input type="text" required>
-				<span>Userame</span>
-				<i></i>
-			</div>
-			<div class="inputBox">
-				<input type="password" required>
-				<span>Password</span>
-				<i></i>
-			</div>
-			<div class="links">
-				<a href="#">Forgot Password ?</a>
-				<a href="#">Signup</a>
-			</div>
-			<input type="submit" value="Get Inside">
-		</form>
-	</div>
-	<script>
-		const form = document.querySelector("#login-form");
-		const errorMessage = document.querySelector("#error-message");
-
-		form.addEventListener("submit", function(event) {
-			event.preventDefault();
-
-			const username = form.elements["username"].value;
-			const password = form.elements["password"].value;
-
-			if (username === "admin" && password === "password") {
-				window.location.href = "next-page.html";
-			} else {
-				errorMessage.textContent = "Invalid username or password";
-			}
-		});
-	</script>
+                    var td4 = document.createElement('td');
+                    td1.textContent = subject;
+                    td2.textContent = studentResults[subject].Internal;
+                    td3.textContent = studentResults[subject].External;
+                    var totalMarks = studentResults[subject].Internal + studentResults[subject].External;
+                    td4.textContent = totalMarks;
+                    if (studentResults[subject].Internal <= 10 || totalMarks < 50) {
+                        pass = false;
+                        td4.className = 'fail';
+                    } else {
+                        td4.className = 'pass';
+                    }
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    table.appendChild(tr);
+                }
+            }
+            var tr = document.createElement('tr');
+            var td1 = document.createElement('td');
+            var td2 = document.createElement('td');
+            td1.textContent = 'Overall Result';
+            td2.textContent = pass ? 'Pass' : 'Fail';
+            td2.className = pass ? 'pass' : 'fail';
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            table.appendChild(tr);
+            resultsDiv.appendChild(table);
+        } else {
+            resultsDiv.textContent = 'Result not found';
+        }
+    }
+    </script>
 </body>
 </html>
