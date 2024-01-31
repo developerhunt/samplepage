@@ -1,3 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Results</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    #regNumInput {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    #regNumInput:focus {
+        border-color: #66afe9;
+        outline: 0;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+    }
+    button {
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+    button:hover {
+        background-color: #286090;
+        border-color: #204d74;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #999;
+        padding: 0.5rem;
+        text-align: left;
+    }
+    .pass {
+        color: green;
+    }
+    .fail {
+        color: red;
+    }
+    </style>
+</head>
+<body>
+    <h1>EXAMINATION RESULTS</h1>
+    <input type="password" id="regNumInput" placeholder="Enter Register Number">
+    <button onclick="showResults()">Show Results</button>
+    <div id="results">
+        <!-- Results will be populated here by JavaScript -->
+    </div>
+    <script>
+    // Sample results for 500 students
+    var results = {};
+    for (var i = 0; i < 500; i++) {
+        var regNum = "Reg" + (i + 1).toString().padStart(8, '0');
+        var studentResults = {
+            "Name": "Student " + (i + 1),
+            "Math": {
+                "Internal": i < 475 ? Math.floor(Math.random() * 16) + 10 : Math.floor(Math.random() * 11),
+                "External": i < 475 ? Math.floor(Math.random() * 26) + 50 : Math.floor(Math.random() * 51)
+            },
+            "Science": {
+                "Internal": i < 475 ? Math.floor(Math.random() * 16) + 10 : Math.floor(Math.random() * 11),
+                "External": i < 475 ? Math.floor(Math.random() * 26) + 50 : Math.floor(Math.random() * 51)
+            },
+            "English": {
+                "Internal": i < 475 ? Math.floor(Math.random() * 16) + 10 : Math.floor(Math.random() * 11),
+                "External": i < 475 ? Math.floor(Math.random() * 26) + 50 : Math.floor(Math.random() * 51)
+            },
+            "History": {
+                "Internal": i < 475 ? Math.floor(Math.random() * 16) + 10 : Math.floor(Math.random() * 11),
+                "External": i < 475 ? Math.floor(Math.random() * 26) + 50 : Math.floor(Math.random() * 51)
+            },
+            "Geography": {
+                "Internal": i < 475 ? Math.floor(Math.random() * 16) + 10 : Math.floor(Math.random() * 11),
+                "External": i < 475 ? Math.floor(Math.random() * 26) + 50 : Math.floor(Math.random() * 51)
+            }
+        };
+        results[regNum] = studentResults;
+    }
+
+    function showResults() {
+        var regNum = document.getElementById('regNumInput').value;
+        var resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = ''; // Clear previous results
+        if (results.hasOwnProperty(regNum)) {
+            var studentResults = results[regNum];
+            var pass = true;
+            var table = document.createElement('table');
+            var tr = document.createElement('tr');
+            var th1 = document.createElement('th');
+            var th2 = document.createElement('th');
+            var th3 = document.createElement('th');
+            var th4 = document.createElement('th');
+            th1.textContent = 'Subject';
+            th2.textContent = 'Internal Marks';
+            th3.textContent = 'External Marks';
+            th4.textContent = 'Total Marks';
+            tr.appendChild(th1);
+            tr.appendChild(th2);
+            tr.appendChild(th3);
+            tr.appendChild(th4);
+            table.appendChild(tr);
+            for (var subject in studentResults) {
+                if (subject !== "Name") {
+                    var tr = document.createElement('tr');
+                    var td1 = document.createElement('td');
+                    var td2 = document.createElement('td');
+                    var td3 = document.createElement('td');
                     var td4 = document.createElement('td');
                     td1.textContent = subject;
                     td2.textContent = studentResults[subject].Internal;
